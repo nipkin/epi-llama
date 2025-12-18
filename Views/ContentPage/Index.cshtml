@@ -1,0 +1,41 @@
+﻿@using EPiServer.Web.Mvc.Html
+@using epiv12demo.Models
+@using epiv12demo.Models.Pages
+@model epiv12demo.ViewModels.IPageViewModel<ContentPage>
+
+@{
+    ViewData["Title"] = Model.CurrentPage.MetaTitle ?? Model.CurrentPage.Name;
+}
+
+<article class="max-w-[840px] mx-auto">
+    <header class="content-page__header">
+        @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.Header))
+        {
+            <h1 class="mb-4">@Html.PropertyFor(x => Model.CurrentPage.Header)</h1>
+        }
+    </header>
+    @if (!string.IsNullOrWhiteSpace(Model.CurrentPage.Preamble))
+    {
+        <p class="text-xl mb-7">@Html.PropertyFor(x => Model.CurrentPage.Preamble)</p>
+    }
+    <section class="content-page__body" aria-labelledby="content-heading">
+        <div>
+            <div class="mb-7 content-page__analysis" role="status" aria-live="polite">
+                @if (ViewBag.ActivityResponse != null)
+                {
+                    <div class="border-t-2 border-white rounded-md p-2">
+                        <h2 id="resultHeading" class="mt-4 font-bold">Analysis result</h2>
+                        <div class="text-xl">@Html.Raw(ViewBag.ActivityResponse)</div>
+                    </div>
+                }
+            </div>    
+        </div>
+        <form method="post" class="content-page__form" action="@Url.ContentUrl(Model.CurrentPage.ContentLink)">
+            @Html.AntiForgeryToken()
+            <div class="form-row border-black">
+                <textarea class="border-white text-xl border-2 w-full max-w-full rounded-md p-2 mb-2 resize-none" rows="2" id="userInput" name="userInput" value="@(ViewBag.UserInput ?? string.Empty)"></textarea>
+                <button class="block text-black text-lg" type="submit">Submit</button>
+            </div>
+        </form>
+    </section>
+</article>
