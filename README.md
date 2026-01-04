@@ -1,4 +1,8 @@
-# Empty CMS template
+# Epi-ollama integration
+
+Simple integration with ollama local ai. For this exampel ollama with the llm mistral is required but can easily be replaced by any other llm.
+Visit ollama to download client: https://ollama.com/
+Visit to download mistral model: https://ollama.com/library/mistral
 
 ## How to run
 
