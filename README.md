@@ -48,3 +48,13 @@ Create an empty database on the external database server and update the connecti
 ```bash
 $ dotnet run
 ````
+
+## Frontend (Vite + Tailwind)
+
+This project includes a modern frontend build setup using **Vite**, **TypeScript**, and **Tailwind CSS**.  
+It is intended for local development and asset building alongside the Optimizely (EPiServer) backend.
+
+### Prerequisites
+
+- Node.js 18+ (LTS recommended)
+- npm (included with Node.js)
